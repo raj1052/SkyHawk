@@ -1,0 +1,25 @@
+# version: '2' This is depricated
+services:
+  backend:
+    image: node
+    build: ./backend
+    networks:
+      - backend-network
+      - frontend-network
+  frontend:
+    image: nginx
+    build: ./frontend
+    networks:
+      - frontend-network
+  authdb:
+    image: redis
+    networks:
+      - backend-network
+  timeseriesdb:
+    image: influxdb
+    networks:
+      - backend-network
+networks:
+  frontend-network:
+
+  backend-network:
